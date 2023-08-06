@@ -1,6 +1,4 @@
-from django import forms
 from productsapp.models import Product
-from django import forms
 
 from django import forms
 
