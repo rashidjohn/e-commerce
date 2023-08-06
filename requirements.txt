@@ -1,9 +1,6 @@
-<<<<<<< HEAD
-Python==3.11.2
 Django==4.2
 django-jazzmin==2.6.0
 crispy-bootstrap5==0.7
-=======
 asgiref==3.7.2
 crispy-bootstrap5==0.7
 Django==4.2.4
@@ -12,4 +9,3 @@ django-jazzmin==2.6.0
 Pillow==10.0.0
 sqlparse==0.4.4
 typing_extensions==4.7.1
->>>>>>> 2f6ef06 (add change bug 👽)
