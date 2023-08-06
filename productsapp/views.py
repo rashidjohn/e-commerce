@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect,get_object_or_404
-from .forms import NewProductForm,ProductForm
-from .models import ProductImage,Product,Comment
+from productsapp.forms import NewProductForm,ProductForm
+from productsapp.models import ProductImage,Product,Comment
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
