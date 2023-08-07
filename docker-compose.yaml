@@ -7,13 +7,15 @@ services:
       sh -c "python manage.py migrate &&
              python manage.py runserver 8001"
     ports:
-      - "8044:8001"
+      - "8000:8001"
     env_file:
       - .env
 
   nginx:
     build: ./nginx
     restart: always
+    ports:
+      - "80:80"
     volumes:
       - static_volume:/app/static
       - media_volume:/app/media
