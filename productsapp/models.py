@@ -1,19 +1,21 @@
 from django.db import models
 from usersapp.models import CustomUser
 
+
 # Create your models here.
 class Category(models.Model):
     name = models.CharField(max_length=20)
 
     def __str__(self) -> str:
         return self.name
-    
+
+
 class Product(models.Model):
     author = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     title = models.CharField(max_length=150)
-    description = models.TextField()
-    price = models.DecimalField(max_digits=10000000, decimal_places=2)
+    description = models.CharField(max_length=700)
+    price = models.ImageField()  # max_digits 1000 dan kichik yoki teng bo'lishi kerak
     address = models.CharField(max_length=150)
     phone_number = models.CharField(max_length=17)
     tg_username = models.CharField(max_length=150)
@@ -21,9 +23,10 @@ class Product(models.Model):
 
     def __str__(self) -> str:
         return self.title
-    
+
     class Meta:
         ordering = ('-id',)
+
 
 class ProductImage(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
@@ -31,6 +34,7 @@ class ProductImage(models.Model):
 
     def __str__(self):
         return self.image
+
 
 class Comment(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
