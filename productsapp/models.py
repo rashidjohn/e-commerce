@@ -15,7 +15,7 @@ class Product(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     title = models.CharField(max_length=150)
     description = models.CharField(max_length=700)
-    price = models.ImageField()  # max_digits 1000 dan kichik yoki teng bo'lishi kerak
+    price = models.DecimalField(max_digits=10, decimal_places=2)  # max_digits 1000 dan kichik yoki teng bo'lishi kerak
     address = models.CharField(max_length=150)
     phone_number = models.CharField(max_length=17)
     tg_username = models.CharField(max_length=150)
@@ -33,7 +33,7 @@ class ProductImage(models.Model):
     image = models.ImageField(upload_to='product_images')
 
     def __str__(self):
-        return self.image
+        return str(self.image)
 
 
 class Comment(models.Model):
