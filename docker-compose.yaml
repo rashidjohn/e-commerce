@@ -1,14 +1,33 @@
 version: '3.8'
 
 services:
+  pgdata:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_DB: dj
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
   django:
     build: .
     command: >
-      sh -c "python manage.py migrate"
+      sh -c "python manage.py migrate &&
+             python manage.py collectstatic --noinput &&
+             gunicorn config.wsgi:application --bind 0.0.0.0:8000"
+    volumes:
+      - static_volume:/app/static
+      - media_volume:/app/media
     ports:
-      - "8000:8001"
+      - "8000:8000"
     env_file:
       - .env
+    depends_on:
+      - pgdata
 
   nginx:
     build: ./nginx
@@ -24,3 +43,4 @@ services:
 volumes:
   static_volume:
   media_volume:
+  pgdata:
