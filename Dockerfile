@@ -6,4 +6,7 @@ ENV PYTHONDONTWRITEBYTECODE=1
 WORKDIR /app
 COPY . /app
 
-RUN --mount=type=cache,id=custom-pip,target=/root/.cache/pip pip install -r /app/requirements.txt
+RUN apt-get update && apt-get install -y build-essential libpq-dev && rm -rf /var/lib/apt/lists/*
+
+RUN pip install --upgrade pip
+RUN pip install -r requirements.txt
